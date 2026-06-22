@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK体育 · 信息聚合与数据参照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3f6fb;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a2634;
+            line-height: 1.55;
+            padding: 0 20px 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---- Hero 区域 ---- */
+        .hero {
+            padding: 80px 0 56px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0f1a2b;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #0b7f6c;
+            background: linear-gradient(145deg, #0b7f6c 0%, #15a085 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto 28px;
+            font-size: 1.12rem;
+            color: #2f3e4f;
+            background: rgba(255,255,255,0.6);
+            padding: 12px 24px;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            display: inline-block;
+        }
+
+        .hero .tagline {
+            display: flex;
+            justify-content: center;
+            gap: 10px 22px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #3c4d5e;
+        }
+
+        .hero .tagline span {
+            background: #e3edf7;
+            padding: 6px 18px;
+            border-radius: 30px;
+            border-left: 3px solid #17a98b;
+        }
+
+        /* ---- 网格卡片布局（优势 / 场景）---- */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin: 48px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 24px;
+            border-radius: 28px;
+            box-shadow: 0 6px 18px rgba(0, 30, 20, 0.04);
+            border: 1px solid rgba(13, 120, 100, 0.10);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(8, 90, 75, 0.08);
+            border-color: #1ba78b;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            color: #0f2a2a;
+        }
+
+        .card h3 i {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: #daf1eb;
+            border-radius: 12px;
+            text-align: center;
+            line-height: 32px;
+            font-style: normal;
+            font-weight: 600;
+            color: #0a7e69;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #253442;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #1ba78b;
+        }
+
+        /* ---- 说明区（延伸阅读与对照）---- */
+        .explain-block {
+            background: #ffffffdb;
+            backdrop-filter: blur(2px);
+            padding: 36px 32px;
+            border-radius: 40px;
+            margin: 32px 0 48px;
+            border: 1px solid rgba(11, 127, 108, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 40px;
+        }
+
+        .explain-block .text-col {
+            flex: 2 1 300px;
+        }
+
+        .explain-block .highlights {
+            flex: 1 1 200px;
+            background: #e6f3ef;
+            border-radius: 28px;
+            padding: 22px 20px;
+        }
+
+        .explain-block h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #0a332c;
+        }
+
+        .explain-block .highlights h4 {
+            font-weight: 600;
+            color: #085a4c;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .explain-block .highlights p {
+            font-size: 0.95rem;
+            color: #1a3b34;
+            border-bottom: 1px dashed #b5d9cf;
+            padding: 8px 0;
+        }
+
+        .explain-block .highlights p:last-child {
+            border-bottom: none;
+        }
+
+        /* ---- FAQ 摘要 ---- */
+        .faq-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 40px 0 36px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 24px;
+            border-left: 6px solid #18a68a;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            color: #082e28;
+            font-size: 1.02rem;
+            margin-bottom: 8px;
+        }
+
+        .faq-item .a {
+            color: #2c404a;
+            font-size: 0.94rem;
+            line-height: 1.5;
+        }
+
+        /* ---- 底部链接 ---- */
+        .footer-links {
+            margin-top: 56px;
+            padding: 28px 0 18px;
+            border-top: 1px solid #c9dddb;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px 18px;
+        }
+
+        .footer-links .brand {
+            font-weight: 500;
+            color: #0b5f51;
+            font-size: 0.95rem;
+        }
+
+        .footer-links .brand a {
+            color: #0e7a65;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(14, 122, 101, 0.3);
+            transition: 0.15s;
+        }
+
+        .footer-links .brand a:hover {
+            border-bottom-color: #0e7a65;
+        }
+
+        .footer-links .meta {
+            display: flex;
+            gap: 20px;
+            color: #3c5c52;
+            font-size: 0.9rem;
+        }
+
+        .footer-links .meta span {
+            background: #e2efea;
+            padding: 4px 14px;
+            border-radius: 40px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-2col { grid-template-columns: 1fr; gap: 22px; }
+            .faq-summary { grid-template-columns: 1fr; }
+            .explain-block { padding: 26px 20px; flex-direction: column; }
+            .hero p { font-size: 1rem; padding: 10px 18px; }
+            .card { padding: 22px 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 48px 0 32px; }
+            .footer-links { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero 区：日常查询与参照入口 -->
+    <section class="hero">
+        <h1>数据 · 对照 · <span>MK体育</span></h1>
+        <p>为日常查询、信息比对与延伸阅读提供结构化聚合</p>
+        <div class="tagline">
+            <span>⚡ 赛程对照</span>
+            <span>📊 统计摘要</span>
+            <span>🔍 信息索引</span>
+        </div>
+    </section>
+
+    <!-- 优势区：网格卡片 -->
+    <div class="grid-2col">
+        <div class="card">
+            <h3><i>①</i> 统一查询基线</h3>
+            <p>将分散的赛事数据、队伍记录与赛季变动整合为可横向对比的条目。减少多标签切换，快速定位不同联赛、不同年份的参考值。</p>
+            <ul>
+                <li>跨赛季胜率与场均数据并列</li>
+                <li>主客场表现拆分对照</li>
+                <li>关键球员状态标签聚合</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3><i>②</i> 延伸阅读锚点</h3>
+            <p>每项统计背后附带背景说明、规则注释或历史参照。不满足于单一数字，提供展开讨论的上下文信息，辅助深度理解。</p>
+            <ul>
+                <li>战术变动与阵容更迭简记</li>
+                <li>联赛特殊规则备注</li>
+                <li>近期舆论与数据趋势摘要</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 说明区（从日常查询、对照和延伸阅读的角度） -->
+    <div class="explain-block">
+        <div class="text-col">
+            <h2>对照而非罗列</h2>
+            <p style="margin-bottom: 12px;">日常查阅体育信息时，多数平台仅提供孤立数据。而实际使用场景中，读者常需要将不同来源、不同时间点的信息并列对比。例如某球队在两个赛季的防守效率变化，或不同联赛的场均节奏差异。<a href="https://beta-mkty.com" style="color: #0b7f6c; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">MK体育</a> 在条目设计上更强调“并置对照”，减少跳转成本。</p>
+            <p style="margin-bottom: 12px;">延伸阅读同样重要：一段统计数字若缺少注解，容易产生误读。页面在关键条目旁增设简短的背景框或规则提示，帮助用户区分统计口径（如包含加时 / 不含加时、主场优势调整等）。</p>
+            <p>此外，对于联赛历史、转会记录与赛制变化，会以折叠式参考块呈现，不打断主流程，但随时可展开查阅。</p>
+        </div>
+        <div class="highlights">
+            <h4>信息密度提示</h4>
+            <p>📌 对照时注意赛季样本量差异</p>
+            <p>📌 不同联赛统计项目命名可能不同</p>
+            <p>📌 部分数据基于公开接口二次计算</p>
+            <p>📌 延伸阅读内容定期复核</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要（4条，简洁） -->
+    <div class="faq-summary">
+        <div class="faq-item">
+            <div class="q">▪ 查询的数据更新时间是？</div>
+            <div class="a">核心赛程与比分数据延迟约 3–5 分钟；统计类条目每自然日刷新一次，部分深度对照表按轮次更新。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">▪ 对照范围覆盖哪些联赛？</div>
+            <div class="a">以欧洲主流联赛（英超、西甲、德甲、意甲、法甲）及亚洲、美洲部分一级联赛为主，杯赛数据按赛季归档。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">▪ 延伸阅读的资料来源？</div>
+            <div class="a">主要来自联赛官方规则手册、媒体分析及赛季总结，并标注参考来源。不包含未证实传闻或主观推测。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">▪ 移动端查看对照表是否适配？</div>
+            <div class="a">所有表格及卡片均采用响应式布局，关键列在窄屏下自动堆叠或转为可横向滚动，确保数据可读。</div>
+        </div>
+    </div>
+
+    <!-- 底部链接（自然嵌入 MK体育） -->
+    <div class="footer-links">
+        <div class="brand">
+            <a href="https://beta-mkty.com">MK体育</a> · 信息聚合与参照平台
+        </div>
+        <div class="meta">
+            <span>对照索引 v1.2</span>
+            <span>数据参照</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
